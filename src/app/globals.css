@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  --color-brand-900: #291C0E;
+  --color-brand-700: #6E473B;
+  --color-brand-500: #A78D78;
+  --color-brand-300: #BEB5A9;
+  --color-brand-100: #E1D4C2;
+
+  --color-neutral-950: #1a1209;
+  --color-neutral-900: #291C0E;
+  --color-neutral-800: #462f22;
+  --color-neutral-700: #6E473B;
+  --color-neutral-600: #8a6a5a;
+  --color-neutral-500: #A78D78;
+  --color-neutral-400: #BEB5A9;
+  --color-neutral-300: #d0c5b9;
+  --color-neutral-200: #E1D4C2;
+  --color-neutral-100: #f0e8dd;
+  --color-neutral-50: #faf6f0;
+
+  --color-blue-950: #1a1209;
+  --color-blue-900: #291C0E;
+  --color-blue-800: #462f22;
+  --color-blue-700: #6E473B;
+  --color-blue-600: #8a6a5a;
+  --color-blue-500: #A78D78;
+  --color-blue-400: #BEB5A9;
+  --color-blue-300: #d0c5b9;
+  --color-blue-200: #E1D4C2;
+  --color-blue-100: #f0e8dd;
+  --color-blue-50: #faf6f0;
+
+  --color-indigo-900: #291C0E;
+  --color-indigo-800: #462f22;
+  --color-indigo-700: #6E473B;
+  --color-indigo-600: #8a6a5a;
+  --color-indigo-500: #A78D78;
+  --color-indigo-400: #BEB5A9;
+  --color-indigo-300: #d0c5b9;
+  --color-indigo-200: #E1D4C2;
+
+  --color-purple-900: #291C0E;
+  --color-purple-800: #462f22;
+  --color-purple-700: #6E473B;
+  --color-purple-600: #8a6a5a;
+  --color-purple-500: #A78D78;
+  --color-purple-400: #BEB5A9;
+  --color-purple-300: #d0c5b9;
+  --color-purple-200: #E1D4C2;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #291C0E;
+    color: #E1D4C2;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1209;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #6E473B;
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #A78D78;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(167, 141, 120, 0.4);
+    color: #FAF6F0;
+  }
+
+  /* Focus outline reset — handled by components */
+  :focus-visible {
+    outline: 2px solid rgba(167, 141, 120, 0.8);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Shimmer animation */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(225, 212, 194, 0.03) 25%,
+      rgba(225, 212, 194, 0.08) 50%,
+      rgba(225, 212, 194, 0.03) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(41, 28, 14, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(225, 212, 194, 0.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(135deg, #A78D78, #BEB5A9, #E1D4C2);
+  }
+
+  /* Glow ring */
+  .glow-ring {
+    box-shadow: 0 0 0 1px rgba(167, 141, 120, 0.3), 0 0 20px rgba(167, 141, 120, 0.15);
+  }
+
+  /* Prose-like line-clamp utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 }
