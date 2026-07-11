@@ -88,7 +88,7 @@ export default function EmptyState({ type, searchQuery, onReset }: EmptyStatePro
 
       {searchQuery && type === 'no-results' && (
         <p className="text-sm text-neutral-400 mb-1">
-          No results for <span className="text-neutral-200 font-medium">"{searchQuery}"</span>
+          No results for <span className="text-neutral-200 font-medium">&quot;{searchQuery}&quot;</span>
         </p>
       )}
 
