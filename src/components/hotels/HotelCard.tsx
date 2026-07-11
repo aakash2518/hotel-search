@@ -71,7 +71,7 @@ function HotelCard({ hotel, index }: HotelCardProps) {
   const propertyType = normalizePropertyType(hotel.type);
   const displayType = formatPropertyType(hotel.type);
   const hasFreeCancellation = hotel.free_cancellation === true;
-  const mainImage = !imgError ? hotel.images?.[0]?.original : null;
+  const mainImage = !imgError ? (hotel.images?.[0]?.original || hotel.images?.[0]?.thumbnail) : null;
 
   return (
     <motion.article
@@ -90,6 +90,7 @@ function HotelCard({ hotel, index }: HotelCardProps) {
             alt={`${hotel.name} — hotel photo`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             loading="lazy"
+            referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
           />
         ) : (
