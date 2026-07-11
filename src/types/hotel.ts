@@ -2,7 +2,7 @@
 
 export interface HotelImage {
   thumbnail: string;
-  original_image: string;
+  original: string;
 }
 
 export interface HotelRatePlan {

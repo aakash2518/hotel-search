@@ -71,7 +71,7 @@ function HotelCard({ hotel, index }: HotelCardProps) {
   const propertyType = normalizePropertyType(hotel.type);
   const displayType = formatPropertyType(hotel.type);
   const hasFreeCancellation = hotel.free_cancellation === true;
-  const mainImage = !imgError ? hotel.images?.[0]?.original_image : null;
+  const mainImage = !imgError ? hotel.images?.[0]?.original : null;
 
   return (
     <motion.article
